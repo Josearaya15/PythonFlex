@@ -1,0 +1,94 @@
+{% extends "padre.html" %}
+{% block content %}
+<section class="container">
+  <h1>Registro de Empresa de Consultoría</h1>
+  <p>Complete el formulario para registrar una nueva empresa.</p>
+
+  <form method="post" action="">
+    {% csrf_token %}
+
+    <div class="campo">
+      <label for="nombre_empresa">Nombre de la Empresa</label>
+      <input type="text" id="nombre_empresa" name="nombre_empresa" required>
+    </div>
+
+    <div class="campo">
+      <label for="rubro">Rubro</label>
+      <input type="text" id="rubro" name="rubro" required>
+    </div>
+
+    <div class="campo">
+      <label for="tamaño">Tamaño</label>
+      <select id="tamaño" name="tamaño" required>
+        <option value="">Seleccione...</option>
+        <option value="Pequeña">Pequeña</option>
+        <option value="Mediana">Mediana</option>
+        <option value="Grande">Grande</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="rut">RUT</label>
+      <input type="text" id="identificador" name="identificador" placeholder="12.345.678-9" required>
+    </div>
+
+    <div class="campo">
+      <label for="email_asociado">Correo Electrónico</label>
+      <input type="email" id="email_asociado" name="email_asociado" placeholder="empresa@dominio.cl" required>
+    </div>
+
+    <button type="submit" class="btn-enviar">Registrar Empresa</button>
+  </form>
+</section>
+
+<style>
+  .container {
+    max-width: 600px;
+    margin: 3rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .campo {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: .3rem;
+    font-weight: 600;
+    color: #34495e;
+  }
+  input, select {
+    width: 100%;
+    padding: .6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  input:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  .btn-enviar {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: .8rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color .2s;
+  }
+  .btn-enviar:hover {
+    background-color: #2980b9;
+  }
+</style>
+{% endblock %}

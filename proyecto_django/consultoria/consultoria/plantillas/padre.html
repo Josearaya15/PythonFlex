@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Consultoría{% endblock %}</title>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #004d7a;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* ✅ evita que los botones se monten */
+            gap: 15px;
+            z-index: 1000; /* ✅ asegura que esté por encima del contenido */
+        }
+
+        main {
+            margin-top: 120px; /* ✅ deja espacio debajo del header */
+            padding: 20px;
+        }
+
+        footer {
+            margin-top: 60px;
+            background-color: #004d7a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column; /* ✅ botones uno debajo del otro */
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="{% url 'inicio' %}" style="color:white;">Inicio</a>
+        <a href="{% url 'contacto' %}" style="color:white;">Registrar Empresa</a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 Consultoría Profesional</p>
+    </footer>
+
+</body>
+</html>
