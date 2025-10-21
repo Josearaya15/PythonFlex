@@ -46,7 +46,7 @@ def formulario_añadir_trabajador(request):
     return render(request,'index.html', {'form': form})
 
 
-def lista_proyectos(request):
+def view_lista_proyectos(request):
     query = request.GET.get('q','')
     if len(query) > 0:
         proyecto = Proyecto.objects.filter(
@@ -55,4 +55,4 @@ def lista_proyectos(request):
     else:
         proyecto = Proyecto.objects.all().order_by("nombre")
     
-    return render(request, 'lista_proyectos.html', {'proyecto': proyecto, 'query': query})
+    return render(request, 'consultoria_app/lista_proyectos.html', {'proyecto': proyecto, 'query': query})
