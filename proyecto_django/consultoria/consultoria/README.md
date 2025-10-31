@@ -8,4 +8,6 @@ Proyecto de una web de consultoría en donde se crean formularios para inscribir
 
 * Get 1: http://127.0.0.1:8000/consultoria_app/lista_proyectos /n
 
-#python manage.py runserver #python manage.py makemigrations #python manage.py migrate
+#python manage.py runserver 
+#python manage.py makemigrations 
+#python manage.py migrate
