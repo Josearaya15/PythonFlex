@@ -1,0 +1,180 @@
+{% extends 'padre.html' %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<section class="auth-container">
+    <div class="auth-card">
+        <h1>Editar Perfil</h1>
+
+        <!-- Avatar actual -->
+        <div class="avatar-preview">
+            {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="Avatar actual">
+            {% else %}
+                <img src="/media/default/default-perfil.png" alt="Sin foto">
+            {% endif %}
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p><label for="id_first_name">Nombre:</label> {{ form.first_name }}</p>
+            <p><label for="id_last_name">Apellidos:</label> {{ form.last_name }}</p>
+            <p><label for="id_email">Correo electrónico:</label> {{ form.email }}</p>
+            <p><label for="id_pais">País:</label> {{ form.pais }}</p>
+            <p><label for="id_direccion">Dirección:</label> {{ form.direccion }}</p>
+
+            <!-- Campo avatar personalizado -->
+            <div class="avatar-upload">
+                <label for="id_avatar" class="avatar-label">Foto de perfil</label>
+                <div class="avatar-buttons">
+                    <label class="btn-foto">
+                        📸 Cambiar foto
+                        <input type="file" name="avatar" id="id_avatar" accept="image/*" class="avatar-input">
+                    </label>
+
+                    {% if user.avatar %}
+                        <label class="btn-borrar">
+                            🗑️ Quitar foto
+                            <input type="checkbox" name="avatar-clear" id="avatar-clear" class="avatar-clear">
+                        </label>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- 🔐 Campos de contraseña -->
+            <hr style="margin: 25px 0;">
+            <h3 style="text-align:left; color:#004d7a;">Cambiar contraseña</h3>
+
+            <p><label for="id_password1">Nueva contraseña:</label> {{ form.password1 }}</p>
+            <p><label for="id_password2">Confirmar nueva contraseña:</label> {{ form.password2 }}</p>
+
+            <button type="submit" class="btn-guardar">💾 Guardar cambios</button>
+        </form>
+
+        <a href="{% url 'accounts:profile_detail' %}" class="volver">⬅ Volver al perfil</a>
+    </div>
+</section>
+
+<style>
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.auth-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #004d7a;
+    margin-bottom: 20px;
+}
+
+.avatar-preview img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #004d7a;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+form p {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.avatar-upload {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.avatar-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.avatar-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-foto, .btn-borrar {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-foto {
+    background-color: #004d7a;
+}
+.btn-foto:hover {
+    background-color: #006fa3;
+}
+
+.btn-borrar {
+    background-color: #b32d2e;
+}
+.btn-borrar:hover {
+    background-color: #d14b4c;
+}
+
+.avatar-input, .avatar-clear {
+    display: none;
+}
+
+.btn-guardar {
+    display: block;
+    width: 100%;
+    background-color: #004d7a;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+}
+
+.btn-guardar:hover {
+    background-color: #006fa3;
+}
+
+.volver {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #004d7a;
+    text-decoration: none;
+}
+
+.volver:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

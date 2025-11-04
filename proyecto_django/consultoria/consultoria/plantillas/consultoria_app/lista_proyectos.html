@@ -13,7 +13,7 @@
   <h1 class="mb-4">Listado de Proyectos</h1>
 
   <!-- Formulario de búsqueda -->
-  <form method="get" action="{% url 'lista_proyectos' %}" class="mb-4 d-flex gap-2">
+  <form method="get" action="{% url 'consultoria_app:lista_proyectos' %}" class="mb-4 d-flex gap-2">
     <input
       type="text"
       name="q"
@@ -34,22 +34,73 @@
           <th>Área Empresa</th>
           <th>Duración</th>
           <th>Presupuesto</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {% if proyecto %}
           {% for p in proyecto %}
             <tr>
-              <td>{{ p.nombre }}</td>
-              <td>{{ p.tema }}</td>
-              <td>{{ p.area_empresa }}</td>
-              <td>{{ p.duracion }}</td>
-              <td>${{ p.presupuesto }}</td>
-            </tr>
+              <form method="post" action="">
+                {% csrf_token %}
+                <input type="hidden" name="editar" value="{{ p.id }}">
+                <td>{{ p.nombre }}</td>
+                <td>
+                  <input
+                    type="text"
+                    name="tema"
+                    value="{{ p.tema }}"
+                    class="form-control form-control-sm"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="area_empresa"
+                    value="{{ p.area_empresa }}"
+                    class="form-control form-control-sm"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="duracion"
+                    value="{{ p.duracion }}"
+                    class="form-control form-control-sm"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="presupuesto"
+                    value="{{ p.presupuesto }}"
+                    class="form-control form-control-sm"
+                  />
+                </td>
+                <td class="d-flex gap-2">
+                  <button type="submit" class="btn btn-success btn-sm">
+                    Guardar
+                  </button>
+              </form>
+
+              <!-- Formulario separado para eliminar -->
+              <form method="post" action="">
+                {% csrf_token %}
+                <input type="hidden" name="eliminar" value="{{ p.id }}">
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-sm"
+                  onclick="return confirm('¿Seguro que deseas eliminar este proyecto?');"
+                >
+                  Eliminar
+                </button>
+              </form>
+            </td>
+          </tr>
           {% endfor %}
         {% else %}
           <tr>
-            <td colspan="5" class="text-center text-muted py-3">
+            <td colspan="6" class="text-center text-muted py-3">
               No se encontraron proyectos registrados.
             </td>
           </tr>
@@ -60,5 +111,3 @@
 </section>
 
 {% endblock %}
-
-

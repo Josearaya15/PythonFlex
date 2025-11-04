@@ -1,0 +1,12 @@
+{% extends 'padre.html' %}
+
+{% block title %}Cerrar sesión{% endblock %}
+
+{% block content %}
+<section class="auth-container">
+    <div class="auth-card">
+        <h1>Has cerrado sesión</h1>
+        <p>¡Hasta luego! <a href="{% url 'accounts:login' %}">Inicia sesión de nuevo</a></p>
+    </div>
+</section>
+{% endblock %}

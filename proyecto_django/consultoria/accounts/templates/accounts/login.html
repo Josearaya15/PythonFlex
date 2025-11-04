@@ -1,0 +1,124 @@
+{% extends 'padre.html' %}
+{% load static %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+<section class="auth-container">
+    <div class="auth-card">
+        <h1>Iniciar sesión</h1>
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            
+            <!-- Campos con estilos personalizados -->
+            <div class="form-group">
+                <label for="id_username">Usuario</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Contraseña</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn-login">🔐 Entrar</button>
+        </form>
+
+        <p class="register-text">
+            ¿No tienes cuenta?
+            <a href="{% url 'accounts:register' %}">Regístrate aquí</a>
+        </p>
+    </div>
+</section>
+
+<style>
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+}
+
+.auth-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-width: 400px;
+    width: 100%;
+    padding: 35px;
+    text-align: center;
+}
+
+.auth-card h1 {
+    color: #004d7a;
+    margin-bottom: 25px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #004d7a;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #004d7a;
+    box-shadow: 0 0 5px rgba(0,77,122,0.3);
+    outline: none;
+}
+
+/* 🔹 Botón de login */
+.btn-login {
+    background-color: #004d7a;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #006fa3;
+}
+
+/* 🔹 Texto de registro */
+.register-text {
+    margin-top: 20px;
+    color: #333;
+}
+
+.register-text a {
+    color: #004d7a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'padre.html' %}
+{% load static %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+<section class="profile-container">
+    <div class="profile-card">
+
+        {% if user.avatar and user.avatar.url %}
+            <img src="{{ user.avatar.url }}" alt="Avatar" class="profile-img">
+        {% else %}
+             <img src="/media/default/default-perfil.png" alt="Sin foto" class="profile-img">
+        {% endif %}
+
+        <h1>{{ user.username }}</h1>
+
+        {% if user.first_name or user.last_name %}
+            <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        {% endif %}
+
+        {% if user.email %}
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        {% endif %}
+
+        {% if user.pais %}
+            <p><strong>País:</strong> {{ user.pais }}</p>
+        {% endif %}
+
+        {% if user.direccion %}
+            <p><strong>Dirección:</strong> {{ user.direccion }}</p>
+        {% endif %}
+
+        {% if user.fecha_nacimiento %}
+            <p><strong>Fecha de nacimiento:</strong> {{ user.fecha_nacimiento|date:"d/m/Y" }}</p>
+        {% endif %}
+
+        <a href="{% url 'accounts:profile_edit' %}" class="edit-btn">Editar perfil</a>
+    </div>
+</section>
+
+<style>
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.profile-card {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #004d7a;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.profile-card h1 {
+    color: #004d7a;
+    margin-bottom: 15px;
+}
+
+.profile-card p {
+    color: #333;
+    margin: 5px 0;
+}
+
+.edit-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #004d7a;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.edit-btn:hover {
+    background-color: #00335c;
+}
+</style>
+{% endblock %}

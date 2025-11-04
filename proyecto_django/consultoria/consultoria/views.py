@@ -5,3 +5,6 @@ from django.template import loader
 
 def inicio(request):
     return render(request, 'index.html')
+
+def AcercaDeMi(request):
+    return render(request, 'AcercaDeMi.html')

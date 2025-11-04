@@ -1,0 +1,117 @@
+{% extends 'padre.html' %}
+{% load static %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<section class="auth-container">
+    <div class="auth-card">
+        <h1>Creación de cuenta</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit">Crear cuenta</button>
+        </form>
+        <p class="login-link">¿Ya tienes cuenta? <a href="{% url 'accounts:login' %}">Inicia sesión aquí</a></p>
+    </div>
+</section>
+
+<style>
+    /* Contenedor principal centrado */
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        padding: 20px;
+    }
+
+    /* Card del formulario */
+    .auth-card {
+        background-color: #f9f9f9;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.2s;
+    }
+
+    .auth-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .auth-card h1 {
+        color: #004d7a;
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+    /* Estilo de los campos del form */
+    .auth-card form input, 
+    .auth-card form select, 
+    .auth-card form textarea {
+        width: 100%;
+        padding: 10px 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+    }
+
+    .auth-card form input:focus,
+    .auth-card form select:focus,
+    .auth-card form textarea:focus {
+        outline: none;
+        border-color: #004d7a;
+    }
+
+    /* Botón de submit */
+    .btn-submit {
+        background-color: #004d7a;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-submit:hover {
+        background-color: #0066a1;
+        transform: scale(1.03);
+    }
+
+    /* Link de login */
+    .login-link {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .login-link a {
+        color: #004d7a;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .login-link a:hover {
+        color: #0066a1;
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+        .auth-card {
+            padding: 30px 20px;
+        }
+    }
+</style>
+{% endblock %}

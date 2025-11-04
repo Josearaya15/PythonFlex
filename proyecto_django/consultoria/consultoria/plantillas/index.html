@@ -21,7 +21,7 @@
         y reducir costos mediante soluciones pragmáticas y medibles.
       </p>
       <div class="d-flex gap-3">
-        <a href="#contacto" class="btn btn-primary btn-lg">Solicitar diagnóstico</a>
+        <a href="{% url 'consultoria_app:contacto' %}" class="btn btn-primary btn-lg">Solicitar diagnóstico</a>
         <a href="#casos" class="btn btn-outline-primary btn-lg">Ver casos</a>
       </div>
     </div>
@@ -38,7 +38,7 @@
               {% csrf_token %}
               {{ form.as_p }}
               <div>  
-                <button type="submit"> Solicitar </button> 
+                <button type="button" onclick="window.location.href='{% url 'consultoria_app:DiagnosticoRapido' %}'"> Solicitar </button> 
               </div>
             </form>
 
